@@ -1,0 +1,55 @@
+<div class="card pt-2">
+  <div class="card-body card-pad pt-2 h-100">
+    <div id="api-key-entry" class="justify-content-between">
+      <h3 class="card-title h5 modal-icon-alignment pb-2 ng-star-inserted">
+        Enter the GenAI API key
+      </h3>
+      <p>Before we start, add an openrouter API key to make your requests.</p>
+      <fieldset style="margin-bottom: 20px">
+        <legend>OpenRouter API key</legend>
+        <input
+          id="api-key"
+          type="text"
+          required=""
+          placeholder="Enter OpenRouter API Key"
+          fdprocessedid="m6j0m"
+        />
+        <button id="api-key-submit-btn" fdprocessedid="uhxxw">Submit</button>
+      </fieldset>
+      <p>If you don't have one yet, here are some steps to create one:</p>
+      <ol>
+        <li>
+          Create an account at
+          <a href="https://www.openrouter.ai">openrouter.ai</a>
+        </li>
+        <li>Under the top right hamburger menu icon, select "Keys"</li>
+        <li>
+          Create key (and save it somewhere!)
+          <ul>
+            <li>
+              the point of this is to prevent abuse if you bought credits on
+              your account if third parties find your key
+            </li>
+            <li>
+              you don't need to buy credits for free models used in this demo
+            </li>
+            <li>
+              you will be shown your key right after creating it: copy and save
+              it somewhere, as you can't access it again through openrouter
+            </li>
+            <li>
+              if you want to try another model, or have credits on your account
+              and want a paid model, let Miguel know so we can update the
+              selections
+            </li>
+          </ul>
+        </li>
+        <li>
+          Now that you have a key, paste it in the input box above, which will
+          use it for this session (the key is not sent back to us, so we won't
+          see it!)
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
