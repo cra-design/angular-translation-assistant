@@ -6,11 +6,9 @@
         <fieldset class="upload-header">
           <legend class="legend-flex">
             <span>Upload source language file</span>
-            <!-- 清除已选文件／预览 -->
             <button class="btn-clear" (click)="onClear()">Clear</button>
           </legend>
 
-          <!-- File Upload -->
           <div id="source-doc-upload">
             <input
               type="file"
@@ -20,7 +18,6 @@
             <p class="error-msg" *ngIf="sourceError">{{ sourceError }}</p>
           </div>
 
-          <!-- 上传按钮：触发 preview -->
           <div class="upload-btn">
             <button
               id="source-upload-provide-btn"
