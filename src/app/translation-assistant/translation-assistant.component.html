@@ -1,2 +1,61 @@
-<h1>translation-assistant</h1>
-<app-api-key></app-api-key>
+<ng-container *ngIf="apiKey; else keyForm">
+  <div><h1>Translation assistnat</h1></div>
+  <div class="card pt-2">
+    <div class="card-body card-pad pt-2 h-100">
+      <div id="source-upload" class="after-key-unhide justify-content-between">
+        <fieldset class="upload-header">
+          <legend class="legend-flex">
+            <span>Upload source language file</span>
+            <!-- 清除已选文件／预览 -->
+            <button class="btn-clear" (click)="onClear()">Clear</button>
+          </legend>
+
+          <!-- File Upload -->
+          <div id="source-doc-upload">
+            <input
+              type="file"
+              accept=".docx,.pptx"
+              (change)="onFileSelected($event)"
+            />
+            <p class="error-msg" *ngIf="sourceError">{{ sourceError }}</p>
+          </div>
+
+          <!-- 上传按钮：触发 preview -->
+          <div class="upload-btn">
+            <button
+              id="source-upload-provide-btn"
+              (click)="previewSource()"
+              [disabled]="!selectedFile"
+            >
+              Upload file
+            </button>
+          </div>
+        </fieldset>
+
+        <ul class="list-unstyled">
+          <li *ngIf="previewText" id="source-preview-wrapper">
+            <details>
+              <summary class="preview-header">
+                <span class="preview-label"
+                  >▶ Preview source language file</span
+                >
+                <button
+                  type="button"
+                  class="copy-all-btn"
+                  title="Copy All"
+                  (click)="copyAll($event)"
+                >
+                  <i class="fa fa-copy"></i>
+                </button>
+              </summary>
+              <pre id="source-text-preview">{{ previewText }}</pre>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #keyForm>
+  <app-api-key></app-api-key>
+</ng-template>
