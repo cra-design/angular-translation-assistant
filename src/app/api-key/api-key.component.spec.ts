@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { APIKeyComponent } from './api-key.component';
+import { ApiKeyComponent } from './api-key.component';
 
 describe('APIKeyComponent', () => {
-  let component: APIKeyComponent;
-  let fixture: ComponentFixture<APIKeyComponent>;
+  let component: ApiKeyComponent;
+  let fixture: ComponentFixture<ApiKeyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [APIKeyComponent]
-    })
-    .compileComponents();
+      imports: [ApiKeyComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(APIKeyComponent);
+    fixture = TestBed.createComponent(ApiKeyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

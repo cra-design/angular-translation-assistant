@@ -55,6 +55,65 @@
       </div>
     </div>
   </div>
+
+  <div *ngIf="showSecondUpload" class="second-step">
+    <div class="card pt-2">
+      <div class="card-body card-pad pt-2 h-100">
+        <div class="justify-content-between">
+          <fieldset>
+            <legend id="second-upload-legend">
+              Paste target language content
+            </legend>
+
+            <div id="second-text-upload" class="translation-container">
+              <div class="text-box-container">
+                <div class="translation-textarea-container">
+                  <textarea
+                    id="second-text"
+                    name="source-text"
+                    placeholder="Enter your translation"
+                    class="inputbox-translation"
+                  ></textarea>
+                  <p id="second-text-error" class="error-msg hidden">
+                    Text cannot be empty.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div id="second-doc-upload" class="hidden">
+              <div id="second-file-container">
+                <input type="file" id="second-file" />
+                <p id="second-multiple-msg" class="error-msg hidden">
+                  Please upload one document at a time.
+                </p>
+                <p id="second-doc-error" class="error-msg hidden">
+                  You must upload a .docx, .pptx or .xlsx file to proceed.
+                </p>
+                <p id="second-doc-mismatch-msg" class="error-msg hidden">
+                  Both documents appear to be in the same language.
+                </p>
+              </div>
+              <div class="sidebyside-wrapper">
+                <p id="second-language-heading" style="margin-top: 15px">
+                  Source language:
+                  <span id="source-doc-detecting" class="hidden"
+                    >detecting...</span
+                  >
+                </p>
+                <select id="second-language-doc" class="hidden">
+                  <option value="english">English</option>
+                  <option value="french">French</option>
+                </select>
+              </div>
+            </div>
+            <button id="second-upload-btn">
+              Format target language content
+            </button>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
 </ng-container>
 <ng-template #keyForm>
   <app-api-key></app-api-key>

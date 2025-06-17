@@ -1,4 +1,3 @@
-// src/app/translation-assistant/translation-assistant.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,7 +10,7 @@ import { FileParseService } from '../services/file-parse.service';
   selector: 'app-translation-assistant',
   imports: [
     CommonModule, // *ngIf / <ng-template>
-    RouterModule, // （如果用了 routerLink）
+    RouterModule,
     ApiKeyComponent,
   ],
   templateUrl: './translation-assistant.component.html',
@@ -32,7 +31,6 @@ export class TranslationAssistantComponent implements OnInit {
   ) {}
 
   onClear(): void {
-    // 导航到同一路由，强制触发组件重建
     this.router
       .navigateByUrl('/', { skipLocationChange: true })
       .then(() => this.router.navigate([this.router.url]));
@@ -41,7 +39,6 @@ export class TranslationAssistantComponent implements OnInit {
   ngOnInit() {
     this.apiKey = this.apiKeyService.getKey();
     if (!this.apiKey) {
-      // 找不到 key，跳回输入页
       this.router.navigate(['/api-key'], { replaceUrl: true });
     }
   }
@@ -65,13 +62,13 @@ export class TranslationAssistantComponent implements OnInit {
 
     try {
       if (ext === 'docx') {
-        // 段落预览
         this.previewText = await this.parseSrv.extractDocxParagraphs(buf);
       } else if (ext === 'pptx') {
         this.previewText = await this.parseSrv.extractPptxText(buf);
       } else {
         this.sourceError = 'Only .docx or .pptx files are supported.';
       }
+      this.showSecondUpload = true;
     } catch (e) {
       console.error(e);
       this.sourceError = 'Failed to extract text for preview.';
@@ -79,7 +76,6 @@ export class TranslationAssistantComponent implements OnInit {
   }
 
   copyAll(event: MouseEvent) {
-    // 阻止 <details> 自身的收合
     event.stopPropagation();
 
     const textToCopy = this.previewText.trim();
@@ -88,14 +84,12 @@ export class TranslationAssistantComponent implements OnInit {
       return;
     }
 
-    // 优先使用现代 Clipboard API
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(textToCopy).catch((err) => {
         console.error('Failed to copy: ', err);
         alert('Failed to copy text.');
       });
     } else {
-      // 退回方案：临时 textarea
       const textarea = document.createElement('textarea');
       textarea.style.position = 'fixed';
       textarea.style.opacity = '0';
