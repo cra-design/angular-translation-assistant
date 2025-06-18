@@ -35,16 +35,14 @@ export class FileParseService {
       const doc = new DOMParser().parseFromString(xmlStr, 'application/xml');
       const slideNumber = entry.match(/slide(\d+)\.xml$/i)![1];
 
-      // 4. 抽取每个 <a:p> 段落
       const paraNodes = Array.from(doc.getElementsByTagName('a:p'));
       for (const para of paraNodes) {
         let paragraphText = '';
 
-        // 5. 抽取每个 <a:t> run
         const textNodes = Array.from(para.getElementsByTagName('a:t'));
         for (const node of textNodes) {
           const raw = node.textContent?.trim() ?? '';
-          // 跳过纯数字（幻灯片页码）或字段
+
           if (raw === slideNumber) continue;
 
           let anc: Node | null = node.parentNode;
@@ -71,11 +69,9 @@ export class FileParseService {
       }
     }
 
-    // 6. 用空行分隔各段落
     return allParagraphs.join('\n\n');
   }
 
-  /** 接下来第 2 步“AI 调用”时会用到： */
   async extractDocxTextXmlWithId(
     arrayBuffer: ArrayBuffer
   ): Promise<{ id: string; text: string }[]> {
